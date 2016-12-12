@@ -3,7 +3,7 @@ import {ToastCtrl} from './main';
 
 class App extends React.Component{
   componentWillMount(){
-    ToastCtrl.getInstance({visible:false});
+    ToastCtrl.createInstance();
   }
   _click(){
     ToastCtrl.show({

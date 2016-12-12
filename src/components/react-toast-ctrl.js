@@ -3,14 +3,17 @@ import Toast from 'components/react-toast';
 let instance;
 
 export default class ToastCtrl {
-  static getInstance(inProps) {
+
+  static createInstance(inProps) {
     instance = instance || Toast.newInstance(inProps);
     return instance;
   }
+
   static show(inOptions){
     instance.component.show(inOptions);
     setTimeout(function(){
       instance.component.hide();
     },inOptions.interval || 2000);
   }
+  
 }
