@@ -8,7 +8,7 @@ export default class ToastCtrl {
     return instance;
   }
   static show(inOptions){
-    instance.component.show(inOptions.msg);
+    instance.component.show(inOptions);
     setTimeout(function(){
       instance.component.hide();
     },inOptions.interval || 2000);

@@ -8,7 +8,7 @@ class Toast extends React.Component{
 
   static propTypes={
     cssClass:React.PropTypes.string,
-    cssClass:React.PropTypes.string,
+    iconClass:React.PropTypes.string,
     msg:React.PropTypes.string,
     backdropStyle:React.PropTypes.object
   }
@@ -26,10 +26,12 @@ class Toast extends React.Component{
   constructor(props){
     super(props);
     this.state={
+      iconClass:props.iconClass,
       visible:props.visible,
       msg:props.msg
     };
   }
+
 
   componentWillMount(){
     BackdropCtrl.getInstance({
@@ -48,19 +50,15 @@ class Toast extends React.Component{
     });
   }
 
-  show(inMsg){
-    Object.assign(this.state,{
-      visible:true,
-      msg:inMsg
-    });
-    this.setState(this.state);
+  show(inOptions){
+    var options=Object.assign(inOptions,{ visible:true });
+    this.state=options;
+    this.setState(options);
     BackdropCtrl.show();
   }
 
   hide(){
-    Object.assign(this.state,{
-      visible:false
-    })
+    Object.assign(this.state,{ visible:false });
     this.setState(this.state);
     BackdropCtrl.hide();
   }
@@ -68,8 +66,8 @@ class Toast extends React.Component{
   render(){
     return (
       <div data-visible={this.state.visible} className={classNames('react-toast',this.props.cssClass)}>
-        <i className={classNames('react-icon',this.props.iconClass)}></i>
-        <span className="text">{this.state.msg}</span>
+        <i className={classNames('react-icon',this.state.iconClass)}></i>
+        <span className="text" dangerouslySetInnerHTML={{__html: this.state.msg}}></span>
       </div>
     );
   }

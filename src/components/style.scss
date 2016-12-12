@@ -6,6 +6,7 @@
   padding:20px;
   background: rgba(#000,0.9);
   color:#FFF;
+  min-width:20%;
   border-radius: 6px;
   text-align: center;
   transition: opacity 0.3s linear,z-index 0.4s linear;
@@ -20,7 +21,10 @@
     z-index:1;
   }
 
-  .react-icon{}
+  .react-icon{
+    display: block;
+    font-size: 50px;
+  }
 }
 
 

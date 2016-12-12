@@ -7,14 +7,24 @@ class App extends React.Component{
   }
   _click(){
     ToastCtrl.show({
-      interval:1000,
-      msg:'test!'
+      interval:2000,
+      iconClass:'ion-checkmark-circled',
+      msg:'操作成功!'
     })
   }
+
+  _click2(){
+    ToastCtrl.show({
+      interval:2000,
+      msg:'操作成功!'
+    })
+  }
+
   render(){
     return (
       <div className="hello-toast">
-        <button onClick={this._click.bind(this)}>show toast</button>
+        <button onClick={this._click.bind(this)}>show toast - has icon</button>
+        <button onClick={this._click2.bind(this)}>show toast - no icon</button>
       </div>
     );
   }
