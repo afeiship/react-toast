@@ -9,14 +9,14 @@ class App extends React.Component{
     ToastCtrl.show({
       interval:2000,
       iconClass:'ion-checkmark-circled',
-      msg:'操作成功!'
+      content:'操作成功!'
     })
   }
 
   _click2(){
     ToastCtrl.show({
       interval:2000,
-      msg:'操作成功!'
+      content:'操作成功!'
     })
   }
 
