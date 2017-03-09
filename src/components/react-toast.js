@@ -1,6 +1,6 @@
 import './style.scss';
 import classNames from 'classnames';
-import {BackdropCtrl} from 'react-backdrop';
+import {ReactBackdropCtrl} from 'react-backdrop';
 import appendToDocument from 'react-append-to-document';
 
 class Toast extends React.Component{
@@ -29,7 +29,7 @@ class Toast extends React.Component{
 
 
   componentWillMount(){
-    BackdropCtrl.getInstance({
+    ReactBackdropCtrl.createInstance({
       visible:false,
       style:{
         opacity:0.001
@@ -51,13 +51,13 @@ class Toast extends React.Component{
     inOptions.visible=true;
     this.state=inOptions;
     this.setState(this.state);
-    BackdropCtrl.show();
+    ReactBackdropCtrl.show();
   }
 
   hide(){
     this.state.visible=false;
     this.setState(this.state);
-    BackdropCtrl.hide();
+    ReactBackdropCtrl.hide();
   }
 
   render(){

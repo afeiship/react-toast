@@ -1,6 +1,7 @@
 import Toast from 'components/react-toast';
 
 let instance;
+let timer;
 
 export default class ToastCtrl {
 
@@ -11,9 +12,10 @@ export default class ToastCtrl {
 
   static show(inOptions){
     instance.component.show(inOptions);
-    setTimeout(function(){
+    // clearTimeout(timer);
+    timer=setTimeout(()=>{
       instance.component.hide();
     },inOptions.interval || 2000);
   }
-  
+
 }
