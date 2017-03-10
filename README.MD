@@ -11,10 +11,39 @@
 ## props:
 | name | type | value | description |
 | :----| :----| :----| :----|
-| visible  | Boolean | true/false | v-show |
+| className  | String | '' | Your ext classname |
+| visible  | Boolean | true/false | show/hide |
+| backdrop  | Boolean | true/false | If has backdrop |
+| content  | String | String Or Html | The toast content. |
 
 
 ## usage:
-```html
-<react-toast :visible="true" />
++ import lib:
+```javascript
+import {ToastCtrl} from 'react-toast';
+```
+
++ use it:
+```jsx
+  componentWillMount(){
+    ToastCtrl.createInstance();
+  }
+
+  _click(){
+    ToastCtrl.show({
+      interval:1000,
+      content:`<div className="abc">
+      <i className="icon">☀</i>
+      <p>操作成功!</p>
+      </div>`
+    })
+  }
+
+  _click2(){
+    ToastCtrl.show({
+      interval:1000,
+      backdrop:false,
+      content:'操作成功!'
+    })
+  }
 ```
