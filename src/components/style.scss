@@ -11,6 +11,10 @@
   text-align: center;
   transition: opacity 0.3s linear,z-index 0.4s linear;
 
+  >.bd{
+    user-select: none;
+  }
+
   &[data-visible=false]{
     opacity: 0;
     z-index:-1;
@@ -19,10 +23,5 @@
   &[data-visible=true]{
     opacity: 1;
     z-index:1;
-  }
-
-  .react-icon{
-    display: block;
-    font-size: 50px;
   }
 }

@@ -12,10 +12,20 @@ export default class ToastCtrl {
 
   static show(inOptions){
     instance.component.show(inOptions);
-    // clearTimeout(timer);
+    clearTimeout(timer);
     timer=setTimeout(()=>{
       instance.component.hide();
     },inOptions.interval || 2000);
+  }
+
+  static hide(){
+    instance.component.hide();
+  }
+
+  static destroy(){
+    instance.destroy();
+    instance = null;
+    timer && clearTimeout(timer);
   }
 
 }

@@ -7,15 +7,18 @@ class App extends React.Component{
   }
   _click(){
     ToastCtrl.show({
-      interval:2000,
-      iconClass:'ion-checkmark-circled',
-      content:'操作成功!'
+      interval:1000,
+      content:`<div className="abc">
+      <i className="icon">☀</i>
+      <p>操作成功!</p>
+      </div>`
     })
   }
 
   _click2(){
     ToastCtrl.show({
-      interval:2000,
+      interval:1000,
+      backdrop:false,
       content:'操作成功!'
     })
   }
