@@ -1,12 +1,12 @@
-import {ToastCtrl} from './main';
-
+import {ReactToastCtrl} from './main';
+import './dev.scss'
 
 class App extends React.Component{
   componentWillMount(){
-    ToastCtrl.createInstance();
+    ReactToastCtrl.createInstance();
   }
   _click(){
-    ToastCtrl.show({
+    ReactToastCtrl.show({
       interval:1000,
       content:`<div className="abc">
       <i className="icon">☀</i>
@@ -16,7 +16,7 @@ class App extends React.Component{
   }
 
   _click2(){
-    ToastCtrl.show({
+    ReactToastCtrl.show({
       interval:1000,
       backdrop:false,
       content:'操作成功!'
@@ -26,8 +26,8 @@ class App extends React.Component{
   render(){
     return (
       <div className="hello-toast">
-        <button onClick={this._click.bind(this)}>show toast - has icon</button>
-        <button onClick={this._click2.bind(this)}>show toast - no icon</button>
+        <button onClick={this._click.bind(this)}>has backdrop - has icon</button>
+        <button onClick={this._click2.bind(this)}>no backdrop - no icon</button>
       </div>
     );
   }

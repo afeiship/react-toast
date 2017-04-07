@@ -1,7 +1,7 @@
-import Toast from 'components/react-toast';
-import ToastCtrl from 'components/react-toast-ctrl';
+import ReactToast from 'components/react-toast';
+import ReactToastCtrl from 'components/react-toast-ctrl';
 
 module.exports = {
-  Toast,
-  ToastCtrl
+  ReactToast,
+  ReactToastCtrl
 };

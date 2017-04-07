@@ -1,14 +1,15 @@
 import './style.scss';
+import React,{PropTypes,PureComponent} from 'react';
 import classNames from 'classnames';
 import {ReactBackdropCtrl} from 'react-backdrop';
 import appendToDocument from 'react-append-to-document';
 
-export default class Toast extends React.Component{
+export default class ReactToast extends PureComponent{
 
   static propTypes={
-    className:React.PropTypes.string,
-    backdrop:React.PropTypes.bool,
-    content:React.PropTypes.string,
+    className:PropTypes.string,
+    backdrop:PropTypes.bool,
+    content:PropTypes.string,
   }
 
   static defaultProps={
@@ -19,14 +20,14 @@ export default class Toast extends React.Component{
   }
 
   static newInstance(inProps){
-    return appendToDocument(Toast,inProps,{
-      className:'toast-container'
+    return appendToDocument(ReactToast,inProps,{
+      className:'react-toast-container'
     });
   }
 
   constructor(props){
     super(props);
-    this.state={
+    this.state = {
       visible:props.visible,
       content:props.content,
     };

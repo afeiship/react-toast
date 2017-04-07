@@ -1,12 +1,12 @@
-import Toast from 'components/react-toast';
+import ReactToast from 'components/react-toast';
 
 let instance;
 let timer;
 
-export default class ToastCtrl {
+export default class ReactToastCtrl {
 
   static createInstance(inProps) {
-    instance = instance || Toast.newInstance(inProps);
+    instance = instance || ReactToast.newInstance(inProps);
     return instance;
   }
 

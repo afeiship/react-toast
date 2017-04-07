@@ -1,6 +1,10 @@
-#react-toast
+# react-toast
 > Toast for react.
 
+
+## size:
++     react-toast.js   8.3 kB
++ react-toast.js.map  51.2 kB
 
 ## resource:
 + http://www.cnblogs.com/Kummy/p/4966937.html
