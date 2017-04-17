@@ -30,6 +30,7 @@ export default class ReactToast extends PureComponent{
       visible:props.visible,
       content:props.content,
     };
+    this._options = {};
   }
 
   componentWillMount(){
@@ -42,13 +43,14 @@ export default class ReactToast extends PureComponent{
   }
 
   show(inOptions){
-    let options = Object.assign({...this.props},inOptions,{visible:true});
+    let options = this._options = Object.assign({...this.props},inOptions,{visible:true});
     const {backdrop} = options;
     this.setState(options);
     backdrop && ReactBackdropCtrl.show();
   }
 
   hide(){
+    const {backdrop} = this._options;
     this.setState({visible:false});
     backdrop && ReactBackdropCtrl.hide();
   }
