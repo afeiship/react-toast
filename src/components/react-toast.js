@@ -1,8 +1,11 @@
 import './style.scss';
-import React,{PropTypes,PureComponent} from 'react';
-import classNames from 'classnames';
+
+import React,{PropTypes, PureComponent} from 'react';
+
 import {ReactBackdropCtrl} from 'react-backdrop';
 import appendToDocument from 'react-append-to-document';
+import classNames from 'classnames';
+import objectAssign from 'object-assign';
 
 export default class ReactToast extends PureComponent{
 
@@ -43,7 +46,7 @@ export default class ReactToast extends PureComponent{
   }
 
   show(inOptions){
-    let options = this._options = Object.assign({...this.props},inOptions,{visible:true});
+    let options = this._options = objectAssign({...this.props},inOptions,{visible:true});
     const {backdrop} = options;
     this.setState(options);
     backdrop && ReactBackdropCtrl.show();

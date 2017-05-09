@@ -13,6 +13,7 @@ var externals = process.env.NODE_ENV === 'production' ? {
   react: 'react',
   classnames: 'classnames',
   'react-dom': 'react-dom',
+  'object-assign': 'object-assign',
   'react-backdrop': 'react-backdrop',
   'react-append-to-document': 'react-append-to-document',
 } : {};
