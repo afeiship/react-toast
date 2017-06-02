@@ -1,7 +1,8 @@
 import './style.scss';
 
-import React,{PropTypes, PureComponent} from 'react';
+import React,{ PureComponent } from 'react';
 
+import PropTypes from 'prop-types';
 import {ReactBackdropCtrl} from 'react-backdrop';
 import appendToDocument from 'react-append-to-document';
 import classNames from 'classnames';
