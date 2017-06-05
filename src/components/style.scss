@@ -13,7 +13,7 @@
     min-width:20%;
     border-radius: 6px;
     text-align: center;
-    transition: opacity 1.5s;
+    transition: opacity .3s;
 
     &[data-visible=false]{
       opacity: 0;
