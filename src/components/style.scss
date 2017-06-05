@@ -1,27 +1,26 @@
 .react-toast{
-  top:38.2%;
-  left:50%;
-  position: fixed;
-  transform: translate(-50%, -50%);
-  padding:20px;
-  background: rgba(#000,0.9);
-  color:#FFF;
-  min-width:20%;
-  border-radius: 6px;
-  text-align: center;
-  transition: opacity 0.3s linear,z-index 0.4s linear;
-
+  position: relative;
   >.bd{
     user-select: none;
-  }
+    top:38.2%;
+    left:50%;
+    position: fixed;
+    z-index: 90;
+    transform: translate(-50%, -50%);
+    padding:20px;
+    background: rgba(#000,0.9);
+    color:#FFF;
+    min-width:20%;
+    border-radius: 6px;
+    text-align: center;
+    transition: opacity 1.5s;
 
-  &[data-visible=false]{
-    opacity: 0;
-    z-index:-1;
-  }
+    &[data-visible=false]{
+      opacity: 0;
+    }
 
-  &[data-visible=true]{
-    opacity: 1;
-    z-index:90;
+    &[data-visible=true]{
+      opacity: 1;
+    }
   }
 }

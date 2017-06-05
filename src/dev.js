@@ -1,5 +1,6 @@
-import {ReactToastCtrl} from './main';
 import './dev.scss'
+
+import {ReactToastCtrl} from './main';
 
 class App extends React.Component{
   componentWillMount(){

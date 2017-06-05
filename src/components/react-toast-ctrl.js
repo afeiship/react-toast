@@ -10,12 +10,12 @@ export default class ReactToastCtrl {
     return instance;
   }
 
-  static show(inOptions){
-    instance.component.show(inOptions);
+  static show(inOptions,inCallback){
+    instance.component.show(inOptions,inCallback);
     clearTimeout(timer);
     timer=setTimeout(()=>{
       instance.component.hide();
-    },inOptions.interval || 2000);
+    },inOptions.interval || 200000);
   }
 
   static hide(){
