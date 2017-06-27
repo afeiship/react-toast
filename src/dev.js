@@ -8,7 +8,7 @@ class App extends React.Component{
   }
   _click(){
     ReactToastCtrl.show({
-      interval:1000,
+      interval:2000,
       content:`<div className="abc">
       <i className="icon">☀</i>
       <p>操作成功!</p>

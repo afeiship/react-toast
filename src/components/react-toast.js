@@ -17,7 +17,6 @@ export default class extends ReactBackdrop{
   };
 
   static defaultProps={
-    content:'',
     visible:false,
     animating:false,
     hidden:true,
@@ -38,11 +37,10 @@ export default class extends ReactBackdrop{
     });
   }
 
-  show(inOptions,inCallback){
+  show(inOptions){
     const options = objectAssign({ ...this.props},inOptions);
-    this.setState(options,()=>{
-      super.show(inCallback);
-    });
+    this.setState(options,super.show);
+    return this;
   }
 
   render(){

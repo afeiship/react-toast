@@ -1,7 +1,6 @@
 import ReactToast from 'components/react-toast';
 
 let instance;
-let timer;
 
 export default class ReactToastCtrl {
 
@@ -10,22 +9,22 @@ export default class ReactToastCtrl {
     return instance;
   }
 
-  static show(inOptions,inCallback){
-    instance.component.show(inOptions,inCallback);
-    clearTimeout(timer);
-    timer=setTimeout(()=>{
+  static show(inOptions){
+    const self = instance.component.show(inOptions);
+    const timer=setTimeout(()=>{
       instance.component.hide();
-    },inOptions.interval || 200000);
+      clearTimeout(timer);
+    },inOptions.interval || 2000);
+    return self;
   }
 
   static hide(){
-    instance.component.hide();
+    return instance.component.hide();
   }
 
   static destroy(){
     instance.destroy();
     instance = null;
-    timer && clearTimeout(timer);
   }
 
 }
