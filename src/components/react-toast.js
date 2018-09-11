@@ -1,56 +1,50 @@
-import './style.scss';
-
-import React,{ PureComponent } from 'react';
-import {ReactBackdrop, ReactBackdropCtrl} from 'react-backdrop';
-
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import appendToDocument from 'react-append-to-document';
 import classNames from 'classnames';
+import noop from 'noop';
 import objectAssign from 'object-assign';
+import ReactVisible from 'react-visible';
+import ReactAppendToDocument from 'react-append-to-document';
 
-export default class extends ReactBackdrop{
-
-  static propTypes={
-    className:PropTypes.string,
-    backdrop:PropTypes.bool,
-    content:PropTypes.string,
-  };
-
-  static defaultProps={
-    visible:false,
-    animating:false,
-    hidden:true,
-    backdrop:true
-  };
-
-  static newInstance(inProps){
-    return appendToDocument(this,inProps,{
-      className:'react-toast-container'
-    });
-  }
-
-  constructor(props){
-    super(props);
-    this.state = objectAssign(this.state,{
-      content:props.content,
-      backdrop:props.backdrop
-    });
-  }
-
-  show(inOptions){
-    const options = objectAssign({ ...this.props},inOptions);
-    this.setState(options,super.show);
-    return this;
-  }
-
-  render(){
-    const {className} = this.props;
-    const {content,visible,backdrop,hidden,animating} = this.state;
+export default class extends ReactVisible {
+  /*===properties start===*/
+  /*===properties end===*/
+  get visibleElementView() {
+    const { className, destroyable, value, backdrop, ...props } = this.props;
+    const { hidden } = this.state;
     return (
-      <div hidden={hidden} data-animating={animating} className={classNames('react-toast',className)}>
-        <div data-visible={visible} className="bd" dangerouslySetInnerHTML={{__html: content}} />
-        {backdrop && <ReactBackdrop style={{opacity:0.01,position:'fixed'}} visible={visible} />}
+      <div
+        hidden={hidden}
+        data-visible={this.state.value}
+        onAnimationEnd={this.onAnimationEnd}
+        className={classNames('webkit-sassui-toast react-toast', className)}
+        {...props}
+      >
+        {this.state.content}
       </div>
+    )
+  }
+
+  static instance(inProps) {
+    return ReactAppendToDocument.append(this, inProps, {
+      className: 'react-ios-toast-container'
+    });
+  }
+
+  present(inStates) {
+    this.setState(inStates, () => {
+      super.present();
+      setTimeout(() => {
+        this.dismiss();
+      }, 1400);
+    })
+  }
+
+  render() {
+    const { destroyValue } = this.state;
+    return (
+      destroyValue && this.visibleElementView
     );
   }
 }

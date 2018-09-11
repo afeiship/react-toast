@@ -1,7 +1,6 @@
 import ReactToast from 'components/react-toast';
-import ReactToastCtrl from 'components/react-toast-ctrl';
-
-module.exports = {
+import Toast from 'components/toast';
+export {
   ReactToast,
-  ReactToastCtrl
+  Toast
 };

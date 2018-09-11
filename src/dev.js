@@ -1,38 +1,38 @@
-import './dev.scss'
+import './dev.scss';
+import { ReactToast, Toast } from './main';
 
-import {ReactToastCtrl} from './main';
+/*===example start===*/
+
+// install: npm install afeiship/react-toast --save
+// import : import ReactToast from 'react-toast'
 
 class App extends React.Component{
-  componentWillMount(){
-    ReactToastCtrl.createInstance();
-  }
-  _click(){
-    ReactToastCtrl.show({
-      interval:2000,
-      content:`<div className="abc">
-      <i className="icon">☀</i>
-      <p>操作成功!</p>
-      </div>`
-    })
+  state = {
+  };
+
+  constructor(props){
+    super(props);
+    window.demo = this;
+    window.refs = this.refs;
+    window.rc = this.refs.rc;
+    Toast.init();
   }
 
-  _click2(){
-    ReactToastCtrl.show({
-      interval:1000,
-      backdrop:false,
-      content:'操作成功!'
-    })
-  }
+  _onClick1 = e =>{
+    Toast.present({
+      content:'sfsdfsdfd!'
+    });
+  };
 
   render(){
     return (
-      <div className="hello-toast">
-        <button onClick={this._click.bind(this)}>has backdrop - has icon</button>
-        <button onClick={this._click2.bind(this)}>no backdrop - no icon</button>
+      <div className="hello-react-toast">
+        <button onClick={this._onClick1} className="button">Show Toast</button>
       </div>
     );
   }
 }
+/*===example end===*/
 
 ReactDOM.render(
     <App />,
