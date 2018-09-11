@@ -16,6 +16,7 @@ var externals = process.env.NODE_ENV === 'production' ? {
   'react-dom': 'react-dom',
   'react-visible':'react-visible',
   'react-append-to-document':'react-append-to-document',
+  'next-timeout':'next-timeout',
   'noop':'noop',
   'mixin-decorator': 'mixin-decorator',
   'object-assign':'object-assign',

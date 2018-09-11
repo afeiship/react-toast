@@ -14,10 +14,6 @@ export default class {
     this.instance.component.present(inOptions, inCallback);
   }
 
-  static dismiss(inOptions) {
-    this.instance.component.dismiss(inOptions);
-  }
-
   static destroy() {
     this.instance.destroy();
     this.instance = null;

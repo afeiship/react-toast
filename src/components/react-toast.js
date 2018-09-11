@@ -6,6 +6,7 @@ import noop from 'noop';
 import objectAssign from 'object-assign';
 import ReactVisible from 'react-visible';
 import ReactAppendToDocument from 'react-append-to-document';
+import nxTimeout from 'next-timeout';
 
 export default class extends ReactVisible {
   /*===properties start===*/
@@ -32,12 +33,15 @@ export default class extends ReactVisible {
     });
   }
 
-  present(inStates) {
-    this.setState(inStates, () => {
+  present(inStates, inCallback) {
+    const { interval, ...states } = inStates;
+    this._timer && this._timer.destroy();
+    this.setState(states, () => {
       super.present();
-      setTimeout(() => {
+      this._timer = nxTimeout(() => {
         this.dismiss();
-      }, 1400);
+        inCallback();
+      }, interval || 1500);
     })
   }
 
