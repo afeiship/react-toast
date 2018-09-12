@@ -45,7 +45,9 @@ class App extends React.Component{
 
   _onClick1 = e =>{
     Toast.present({
-      content:'sfsdfsdfd!'
+      content:'A Cool toast!'
+    },()=>{
+      console.log('I was dismissed!');
     });
   };
 
