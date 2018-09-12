@@ -38,6 +38,10 @@ export default class extends ReactVisible {
     this._callback = noop;
   }
 
+  componentWillUnmount() {
+    this._callback = null;
+  }
+
   present(inStates, inCallback) {
     const { interval, ...states } = inStates;
     this._callback = inCallback || noop;
