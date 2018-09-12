@@ -21,6 +21,8 @@ class App extends React.Component{
   _onClick1 = e =>{
     Toast.present({
       content:'sfsdfsdfd!'
+    },()=>{
+      console.log('end!');
     });
   };
 

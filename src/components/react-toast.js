@@ -18,7 +18,7 @@ export default class extends ReactVisible {
       <div
         hidden={hidden}
         data-visible={this.state.value}
-        onAnimationEnd={this.onAnimationEnd}
+        onAnimationEnd={this._onAnimationEnd}
         className={classNames('webkit-sassui-toast react-toast', className)}
         {...props}
       >
@@ -33,17 +33,28 @@ export default class extends ReactVisible {
     });
   }
 
+  constructor(inProps) {
+    super(inProps);
+    this._callback = noop;
+  }
+
   present(inStates, inCallback) {
     const { interval, ...states } = inStates;
+    this._callback = inCallback || noop;
     this._timer && this._timer.destroy();
     this.setState(states, () => {
       super.present();
       this._timer = nxTimeout(() => {
         this.dismiss();
-        inCallback();
       }, interval || 1500);
     })
   }
+
+  onAnimationEnd() {
+    super.onAnimationEnd();
+    const { value } = this.state;
+    !value && this._callback();
+  };
 
   render() {
     const { destroyValue } = this.state;
