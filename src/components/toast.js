@@ -1,7 +1,6 @@
-import ReactToast from 'components/react-toast';
+import ReactToast from "components/react-toast";
 
 export default class {
-
   static instance;
 
   static init(inProps) {
@@ -11,12 +10,17 @@ export default class {
   }
 
   static present(inOptions, inCallback) {
-    this.instance.component.present(inOptions, inCallback);
+    if (this.instance) {
+      this.instance.component.present(inOptions, inCallback);
+    } else {
+      setTimeout(() => {
+        this.instance.component.present(inOptions, inCallback);
+      });
+    }
   }
 
   static destroy() {
     this.instance.destroy();
     this.instance = null;
   }
-
 }
