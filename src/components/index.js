@@ -38,7 +38,7 @@ export default class ReactToast extends Component {
 
   static init(inProps) {
     return ReactAppendToDocument.append(this, inProps, {
-      className: 'react-toast-container'
+      className: `${CLASS_NAME}__container`
     }).then((instance) => {
       this.instance = instance;
     });
@@ -65,20 +65,23 @@ export default class ReactToast extends Component {
   }
 
   present(inContent) {
-    const { interval } = this.props;
+    this.delayDismiss();
     this.setState({
       hidden: false,
       value: true,
       content: inContent
     });
-
-    setTimeout(() => {
-      this.dismiss();
-    }, interval);
   }
 
   dismiss() {
     this.setState({ value: false });
+  }
+
+  delayDismiss() {
+    const { interval } = this.props;
+    setTimeout(() => {
+      this.dismiss();
+    }, interval);
   }
 
   handleAnimationEnd() {

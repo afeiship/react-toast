@@ -10,7 +10,7 @@ class App extends React.Component {
   }
 
   handleClick = (inEvent) => {
-    ReactToast.present('I am a toast');
+    ReactToast.present('道可道，非常道；名可名，非常名');
   };
 
   render() {

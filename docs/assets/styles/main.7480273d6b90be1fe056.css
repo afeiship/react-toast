@@ -1,9 +1,0 @@
-*{margin:0;padding:0}html,body,#app,.app-container{height:100%}/*!
- * name: @feizheng/webkit-sassui-toast
- * description: Toast sass style.
- * url: https://github.com/afeiship/webkit-sassui-toast
- * version: 1.0.0
- * date: 2020-02-13 15:09:46
- * license: MIT
- */.webkit-sassui-toast{min-width:100px;max-width:300px;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-user-select:none;padding:10px;-webkit-box-sizing:border-box;box-sizing:border-box;border-radius:10px;top:38.2%;left:50%;position:fixed;font-size:14px;z-index:90;-webkit-transform:translate(-50%, -50%);transform:translate(-50%, -50%);color:#fff}@-webkit-keyframes webkit-sassui-toast-fade-in{to{background:rgba(0,0,0,0.8)}}@keyframes webkit-sassui-toast-fade-in{to{background:rgba(0,0,0,0.8)}}@-webkit-keyframes webkit-sassui-toast-fade-out{from{background:rgba(0,0,0,0.8)}to{background:rgba(0,0,0,0)}}@keyframes webkit-sassui-toast-fade-out{from{background:rgba(0,0,0,0.8)}to{background:rgba(0,0,0,0)}}.webkit-sassui-toast.visible-true,.webkit-sassui-toast[data-visible="true"]{background:rgba(0,0,0,0);-webkit-animation:webkit-sassui-toast-fade-in 300ms ease-in forwards;animation:webkit-sassui-toast-fade-in 300ms ease-in forwards}.webkit-sassui-toast,.webkit-sassui-toast.visible-false,.webkit-sassui-toast[data-visible="false"]{-webkit-animation:webkit-sassui-toast-fade-out 300ms ease-in forwards;animation:webkit-sassui-toast-fade-out 300ms ease-in forwards}.app-container{padding:50px;-webkit-box-sizing:border-box;box-sizing:border-box}.app-container .button{background:#3cc51f;width:100%;display:block;margin-bottom:10px;border-radius:10px;color:#fff;padding:20px;border:none}.app-container .button:active{background:#2f9918}.app-container .button:focus{outline:none}
-
