@@ -18,6 +18,7 @@ __GENERATE_DOCS__
 1. import css
   ```scss
   @import "~@feizheng/react-toast/dist/style.scss";
+  @import "@feizheng/webkit-sassui-toast";
 
   // customize your styles:
   $react-toast-options: ()
