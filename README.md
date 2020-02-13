@@ -17,7 +17,7 @@ npm update @feizheng/react-toast
 | className | string | -       | The extended className for component. |
 | value     | bool   | false   | Default value.                        |
 | onChange  | func   | noop    | The change handler.                   |
-| interval  | number | 2500    | The default timer interval;           |
+| interval  | number | 2500    | The default timer interval.           |
 
 
 ## usage

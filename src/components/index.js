@@ -25,7 +25,7 @@ export default class ReactToast extends Component {
      */
     onChange: PropTypes.func,
     /**
-     * The default timer interval;
+     * The default timer interval.
      */
     interval: PropTypes.number
   };
