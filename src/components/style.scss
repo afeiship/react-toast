@@ -1,15 +1,4 @@
-@import "node_modules/webkit-sassui-toast/dist/webkit-sassui-toast.scss";
-
-$react-toast-options: (
-  z-index: 200
-) !default;
+$react-toast-options: () !default;
 
 .react-toast {
-  $z-index: map-get(
-    $map: $react-toast-options,
-    $key: z-index
-  );
-
-
-  z-index: $z-index;
 }

@@ -1,63 +1,69 @@
 # react-toast
-> Toast for react
+> Toast for react.
 
-## properties:
-```javascript
-
-  
+## installation
+```shell
+npm install -S @feizheng/react-toast
 ```
 
-## install && import:
-```bash
-npm install --save afeiship/react-toast --registry=https://registry.npm.taobao.org
+## update
+```shell
+npm update @feizheng/react-toast
 ```
 
-```js
-import ReactToast from 'react-toast';
-```
-
-```scss
-// customize your styles:
-$react-toast-options:(
-);
-
-@import 'node_modules/react-toast/dist/style.scss';
-```
+## properties
+| Name      | Type   | Default | Description                           |
+| --------- | ------ | ------- | ------------------------------------- |
+| className | string | -       | The extended className for component. |
+| value     | bool   | false   | Default value.                        |
+| onChange  | func   | noop    | The change handler.                   |
+| interval  | number | 2500    | The default timer interval;           |
 
 
-## usage:
-```jsx
+## usage
+1. import css
+  ```scss
+  @import "~@feizheng/react-toast/dist/style.scss";
 
-// install: npm install afeiship/react-toast --save
-// import : import ReactToast from 'react-toast'
+  // customize your styles:
+  $react-toast-options: ()
+  ```
+2. import js
+  ```js
+  import ReactToast from '@feizheng/react-toast';
+  import ReactDOM from 'react-dom';
+  import React from 'react';
+  import './assets/style.scss';
 
-class App extends React.Component{
-  state = {
-  };
+  class App extends React.Component {
+    state = {
+      visible: false
+    };
 
-  constructor(props){
-    super(props);
-    window.demo = this;
-    window.refs = this.refs;
-    window.rc = this.refs.rc;
-    Toast.init();
+    constructor(inProps) {
+      super(inProps);
+      ReactToast.init({ interval: 2000 });
+    }
+
+    handleClick = (inEvent) => {
+      ReactToast.present('I am a toast');
+    };
+
+    render() {
+      const { visible } = this.state;
+      return (
+        <div className="app-container">
+          <button className="button" onClick={this.handleClick}>
+            Show Toast
+          </button>
+        </div>
+      );
+    }
   }
 
-  _onClick1 = e =>{
-    Toast.present({
-      content:'A Cool toast!'
-    },()=>{
-      console.log('I was dismissed!');
-    });
-  };
+  ReactDOM.render(<App />, document.getElementById('app'));
 
-  render(){
-    return (
-      <div className="hello-react-toast">
-        <button onClick={this._onClick1} className="button">Show Toast</button>
-      </div>
-    );
-  }
-}
+  ```
 
-```
+## documentation
+- https://afeiship.github.io/react-toast/
