@@ -4,10 +4,6 @@ import React from 'react';
 import './assets/style.scss';
 
 class App extends React.Component {
-  state = {
-    visible: false
-  };
-
   constructor(inProps) {
     super(inProps);
     ReactToast.init({ interval: 2000 });
@@ -18,7 +14,6 @@ class App extends React.Component {
   };
 
   render() {
-    const { visible } = this.state;
     return (
       <div className="app-container">
         <button className="button" onClick={this.handleClick}>

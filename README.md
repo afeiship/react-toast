@@ -36,10 +36,6 @@ npm update @feizheng/react-toast
   import './assets/style.scss';
 
   class App extends React.Component {
-    state = {
-      visible: false
-    };
-
     constructor(inProps) {
       super(inProps);
       ReactToast.init({ interval: 2000 });
@@ -50,7 +46,6 @@ npm update @feizheng/react-toast
     };
 
     render() {
-      const { visible } = this.state;
       return (
         <div className="app-container">
           <button className="button" onClick={this.handleClick}>
