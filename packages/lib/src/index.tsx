@@ -5,7 +5,6 @@ import type { EventMittNamespace } from '@jswork/event-mitt';
 import { ReactHarmonyEvents } from '@jswork/harmony-events';
 
 const CLASS_NAME = 'react-toast';
-// const uuid = () => Math.random().toString(36).substring(2, 9);
 export type ReactToastProps = {
   /**
    * The component class identifier.
@@ -21,6 +20,10 @@ export type ReactToastProps = {
    * @default 1000
    */
   zIndex?: number;
+  /**
+   * The toast animate offset.
+   */
+  offset?: number;
   /**
    * The duration time.
    */
@@ -60,6 +63,15 @@ export default class ReactToast extends Component<ReactToastProps, ReactToastSta
     return runtimeProps?.duration || duration;
   }
 
+  get style() {
+    const { style, zIndex, offset } = { ...this.props, ...this.state.runtimeProps };
+    return {
+      '--react-toast-z-index': zIndex,
+      '--react-toast-offset': offset,
+      ...style
+    };
+  }
+
   componentDidMount() {
     this.harmonyEvents = ReactHarmonyEvents.create(this);
     this.ve = new VisibleElement(this.elementRef.current!, {
@@ -92,9 +104,8 @@ export default class ReactToast extends Component<ReactToastProps, ReactToastSta
   };
 
   render() {
-    const { name, className, fixed, zIndex, duration, ...rest } = this.props;
     const { visible, runtimeProps } = this.state;
-    const _rest = { ...rest, ...runtimeProps };
+    const { name, className, fixed, zIndex, duration, offset, ...rest } = { ...this.props, ...runtimeProps };
 
     return (
       <div
@@ -104,7 +115,7 @@ export default class ReactToast extends Component<ReactToastProps, ReactToastSta
         data-visible={visible}
         data-fixed={fixed}
         className={cx(CLASS_NAME, className)}
-        {..._rest}
+        {...rest}
       />
     );
   }

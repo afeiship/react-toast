@@ -1,8 +1,9 @@
 .react-toast {
   --react-toast-z-index: 10;
-  --toast-background-color: #323232;
+  --react-toast-background-color: #323232;
+  --react-toast-offset: -20px;
 
-  background-color: var(--toast-background-color);
+  background-color: var(--react-toast-background-color);
   z-index: var(--react-toast-z-index);
   top: 10%;
   left: 50%;
@@ -31,7 +32,7 @@
   @keyframes show-toast {
     from {
       opacity: 0;
-      margin-top: -18px;
+      margin-top: var(--react-toast-offset);
     }
 
     to {
@@ -43,7 +44,7 @@
   @keyframes hide-toast {
     to {
       opacity: 0;
-      margin-top: -18px;
+      margin-top: var(--react-toast-offset);
     }
   }
 }
