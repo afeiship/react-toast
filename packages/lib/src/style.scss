@@ -21,11 +21,11 @@
   }
 
   &[data-visible="true"] {
-    animation: show-toast 0.3s;
+    animation: show-toast 0.3s cubic-bezier(0.62, -0.99, 0.51, 2.5);
   }
 
   &[data-visible="false"] {
-    animation: hide-toast 0.3s;
+    animation: hide-toast 0.3s cubic-bezier(0.62, -0.99, 0.51, 2.5);
   }
 
   @keyframes show-toast {

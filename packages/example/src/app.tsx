@@ -22,10 +22,18 @@ function App() {
         </nav>
         <nav className="x-2 rel z-10">
           <button className="btn btn-sm btn-primary" onClick={() => cmd2.present({
-            children: 'Dynamically set content.'
-          })}>Show fixed Toast</button>
-          <button className="btn btn-sm btn-secondary ml-2" onClick={() => cmd2.dismiss()}>Hide fixed Toast(optional)</button>
+            children: 'Dynamically set content.',
+            duration: 5 * 1000
+          })}>Show fixed Toast
+          </button>
+          <button className="btn btn-sm btn-secondary ml-2" onClick={() => cmd2.dismiss()}>Hide fixed Toast(optional)
+          </button>
         </nav>
+        <div className="mockup-code">
+          <pre data-prefix="$">
+            <code>methods: preset/dismiss</code>
+          </pre>
+        </div>
       </div>
     </div>
   );
