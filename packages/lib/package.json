@@ -1,6 +1,6 @@
 {
   "name": "@jswork/react-toast",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "dist/main.cjs.js",
   "module": "dist/main.esm.js",
   "types": "dist/main.d.ts",
@@ -41,5 +41,9 @@
     "@jswork/event-mitt": "^1.0.14",
     "@jswork/harmony-events": "^1.2.2",
     "@jswork/visible-element": "^1.0.9"
-  }
+  },
+  "keywords": [
+    "react",
+    "toast"
+  ]
 }
