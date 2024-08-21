@@ -1,4 +1,4 @@
-import RcComponent from '.';
+import RcComponent, { ReactToastProps } from '.';
 
 const useCommand = (inName?: string) => {
   const name = inName || '@';
@@ -6,7 +6,7 @@ const useCommand = (inName?: string) => {
     RcComponent.event.emit(`${name}:${command}`, ...args);
 
   // the command repository:
-  const present = (opts?: any) => execute('present', opts);
+  const present = (opts?: ReactToastProps) => execute('present', opts);
   const dismiss = () => execute('dismiss');
 
   return {
