@@ -1,5 +1,7 @@
 import ReactToast from '.';
+import type { ReactToastProps } from '.';
 import useCommand from './use-command';
 
-export default ReactToast;
 export { useCommand };
+export type { ReactToastProps };
+export default ReactToast;

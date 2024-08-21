@@ -6,7 +6,7 @@ const useCommand = (inName?: string) => {
     RcComponent.event.emit(`${name}:${command}`, ...args);
 
   // the command repository:
-  const present = () => execute('present');
+  const present = (opts?: any) => execute('present', opts);
   const dismiss = () => execute('dismiss');
 
   return {

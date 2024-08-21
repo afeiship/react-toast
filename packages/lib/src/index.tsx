@@ -1,4 +1,3 @@
-// import noop from '@jswork/noop';
 import cx from 'classnames';
 import React, { Component, createRef, HTMLAttributes } from 'react';
 import VisibleElement from '@jswork/visible-element';
@@ -28,7 +27,12 @@ export type ReactToastProps = {
   duration?: number;
 } & HTMLAttributes<HTMLDivElement>;
 
-export default class ReactToast extends Component<ReactToastProps> {
+interface ReactToastState {
+  visible: boolean;
+  runtimeProps: ReactToastProps;
+}
+
+export default class ReactToast extends Component<ReactToastProps, ReactToastState> {
   static displayName = CLASS_NAME;
   static version = '__VERSION__';
   static event: EventMittNamespace.EventMitt;
@@ -46,13 +50,20 @@ export default class ReactToast extends Component<ReactToastProps> {
   private timer = 0;
 
   state = {
-    visible: false
+    visible: false,
+    runtimeProps: {} as ReactToastProps
   };
+
+  get duration() {
+    const { duration } = this.props;
+    const { runtimeProps } = this.state;
+    return runtimeProps?.duration || duration;
+  }
 
   componentDidMount() {
     this.harmonyEvents = ReactHarmonyEvents.create(this);
     this.ve = new VisibleElement(this.elementRef.current!, {
-      onChange: () => this.setState({ visible: this.ve?.visible })
+      onChange: () => this.setState({ visible: this.ve?.visible! })
     });
     this.ve.close();
   }
@@ -62,12 +73,11 @@ export default class ReactToast extends Component<ReactToastProps> {
   }
 
   /* ----- public eventBus methods ----- */
-  present = () => {
-    const { duration } = this.props;
-    this.ve?.to(true);
-    this.timer = setTimeout(() => {
-      this.ve?.to(false);
-    }, duration);
+  present = (props: ReactToastProps) => {
+    this.setState({ runtimeProps: props }, () => {
+      this.ve?.to(true);
+      this.delayDismiss();
+    });
   };
 
   dismiss = () => {
@@ -75,9 +85,17 @@ export default class ReactToast extends Component<ReactToastProps> {
     this.ve?.to(false);
   };
 
+  delayDismiss = () => {
+    this.timer = setTimeout(() => {
+      this.ve?.to(false);
+    }, this.duration);
+  };
+
   render() {
-    const { name, className, children, fixed, zIndex, duration, ...rest } = this.props;
-    const { visible } = this.state;
+    const { name, className, fixed, zIndex, duration, ...rest } = this.props;
+    const { visible, runtimeProps } = this.state;
+    const _rest = { ...rest, ...runtimeProps };
+
     return (
       <div
         ref={this.elementRef}
@@ -86,9 +104,8 @@ export default class ReactToast extends Component<ReactToastProps> {
         data-visible={visible}
         data-fixed={fixed}
         className={cx(CLASS_NAME, className)}
-        {...rest}>
-        {children}
-      </div>
+        {..._rest}
+      />
     );
   }
 }

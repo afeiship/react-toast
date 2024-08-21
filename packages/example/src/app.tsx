@@ -21,7 +21,9 @@ function App() {
           <button className="btn btn-sm btn-secondary ml-2" onClick={() => cmd1.dismiss()}>HideToast</button>
         </nav>
         <nav className="x-2 rel z-10">
-          <button className="btn btn-sm btn-primary" onClick={() => cmd2.present()}>Show fixed Toast</button>
+          <button className="btn btn-sm btn-primary" onClick={() => cmd2.present({
+            children: 'Dynamically set content.'
+          })}>Show fixed Toast</button>
           <button className="btn btn-sm btn-secondary ml-2" onClick={() => cmd2.dismiss()}>Hide fixed Toast(optional)</button>
         </nav>
       </div>
