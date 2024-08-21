@@ -43,7 +43,7 @@ export default class ReactToast extends Component<ReactToastProps> {
   private harmonyEvents: ReactHarmonyEvents | null = null;
   private elementRef = createRef<HTMLDivElement>();
   private ve?: VisibleElement;
-  private timer: any;
+  private timer = 0;
 
   state = {
     visible: false
@@ -52,9 +52,7 @@ export default class ReactToast extends Component<ReactToastProps> {
   componentDidMount() {
     this.harmonyEvents = ReactHarmonyEvents.create(this);
     this.ve = new VisibleElement(this.elementRef.current!, {
-      onChange: () => {
-        this.setState({ visible: this.ve?.visible });
-      }
+      onChange: () => this.setState({ visible: this.ve?.visible })
     });
     this.ve.close();
   }
