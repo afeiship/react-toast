@@ -1,5 +1,5 @@
 import cx from 'classnames';
-import React, { Component, createRef, HTMLAttributes } from 'react';
+import React, { Component, createRef, HTMLAttributes, ReactNode } from 'react';
 import VisibleElement from '@jswork/visible-element';
 import type { EventMittNamespace } from '@jswork/event-mitt';
 import { ReactHarmonyEvents } from '@jswork/harmony-events';
@@ -47,12 +47,12 @@ interface ReactToastState {
 }
 
 export interface Presenter {
-  present(text?: string, opts?: ReactToastProps): void;
+  present(text?: ReactNode, opts?: ReactToastProps): void;
 
   present(opts?: ReactToastProps): void;
 }
 
-export type PresentCallback = (textOrProps?: string | ReactToastProps, opts?: ReactToastProps) => void;
+export type PresentCallback = (textOrProps?: ReactNode | ReactToastProps, opts?: ReactToastProps) => void;
 
 export default class ReactToast extends Component<ReactToastProps, ReactToastState> implements Presenter {
   static displayName = CLASS_NAME;
