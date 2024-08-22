@@ -5,6 +5,17 @@ import type { EventMittNamespace } from '@jswork/event-mitt';
 import { ReactHarmonyEvents } from '@jswork/harmony-events';
 
 const CLASS_NAME = 'react-toast';
+
+const compact = (obj) => {
+  const result = {};
+  for (const key in obj) {
+    if (obj.hasOwnProperty(key) && obj[key] !== undefined) {
+      result[key] = obj[key];
+    }
+  }
+  return result;
+};
+
 export type ReactToastProps = {
   /**
    * The component class identifier.
@@ -35,7 +46,15 @@ interface ReactToastState {
   runtimeProps: ReactToastProps;
 }
 
-export default class ReactToast extends Component<ReactToastProps, ReactToastState> {
+export interface Presenter {
+  present(text?: string, opts?: ReactToastProps): void;
+
+  present(opts?: ReactToastProps): void;
+}
+
+export type PresentCallback = (textOrProps?: string | ReactToastProps, opts?: ReactToastProps) => void;
+
+export default class ReactToast extends Component<ReactToastProps, ReactToastState> implements Presenter {
   static displayName = CLASS_NAME;
   static version = '__VERSION__';
   static event: EventMittNamespace.EventMitt;
@@ -44,7 +63,7 @@ export default class ReactToast extends Component<ReactToastProps, ReactToastSta
     name: '@',
     fixed: false,
     zIndex: 1000,
-    duration: 2000
+    duration: 2000,
   };
 
   private harmonyEvents: ReactHarmonyEvents | null = null;
@@ -54,7 +73,7 @@ export default class ReactToast extends Component<ReactToastProps, ReactToastSta
 
   state = {
     visible: false,
-    runtimeProps: {} as ReactToastProps
+    runtimeProps: {} as ReactToastProps,
   };
 
   get duration() {
@@ -68,14 +87,14 @@ export default class ReactToast extends Component<ReactToastProps, ReactToastSta
     return {
       '--react-toast-z-index': zIndex,
       '--react-toast-offset': offset,
-      ...style
+      ...style,
     };
   }
 
   componentDidMount() {
     this.harmonyEvents = ReactHarmonyEvents.create(this);
     this.ve = new VisibleElement(this.elementRef.current!, {
-      onChange: () => this.setState({ visible: this.ve?.visible! })
+      onChange: () => this.setState({ visible: this.ve?.visible! }),
     });
     this.ve.close();
   }
@@ -85,8 +104,10 @@ export default class ReactToast extends Component<ReactToastProps, ReactToastSta
   }
 
   /* ----- public eventBus methods ----- */
-  present = (props: ReactToastProps) => {
-    this.setState({ runtimeProps: props }, () => {
+  present: PresentCallback = (textOrProps?, opts?) => {
+    const props = typeof textOrProps === 'object' ? textOrProps : { children: textOrProps, ...opts };
+    const runtimeProps = compact(props);
+    this.setState({ runtimeProps }, () => {
       this.ve?.to(true);
       this.delayDismiss();
     });

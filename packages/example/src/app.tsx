@@ -23,10 +23,15 @@ function App() {
         <nav className="x-2 rel z-10">
           <button className="btn btn-sm btn-primary" onClick={() => cmd2.present({
             children: 'Dynamically set content.',
-            duration: 5 * 1000
+            duration: 5 * 1000,
           })}>Show fixed Toast
           </button>
           <button className="btn btn-sm btn-secondary ml-2" onClick={() => cmd2.dismiss()}>Hide fixed Toast(optional)
+          </button>
+        </nav>
+        <nav className="x-2">
+          <button onClick={() => cmd1.present('Only a text')} className="btn btn-sm btn-primary">Show Toast only a
+            text
           </button>
         </nav>
         <div className="mockup-code">
