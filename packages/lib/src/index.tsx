@@ -52,9 +52,15 @@ export interface Presenter {
   present(opts?: ReactToastProps): void;
 }
 
-export type PresentCallback = (textOrProps?: ReactNode | ReactToastProps, opts?: ReactToastProps) => void;
+export type PresentCallback = (
+  textOrProps?: ReactNode | ReactToastProps,
+  opts?: ReactToastProps
+) => void;
 
-export default class ReactToast extends Component<ReactToastProps, ReactToastState> implements Presenter {
+export default class ReactToast
+  extends Component<ReactToastProps, ReactToastState>
+  implements Presenter
+{
   static displayName = CLASS_NAME;
   static version = '__VERSION__';
   static event: EventMittNamespace.EventMitt;
@@ -69,7 +75,7 @@ export default class ReactToast extends Component<ReactToastProps, ReactToastSta
   private harmonyEvents: ReactHarmonyEvents | null = null;
   private elementRef = createRef<HTMLDivElement>();
   private ve?: VisibleElement;
-  private timer = 0;
+  private timer: any = 0;
 
   state = {
     visible: false,
@@ -105,7 +111,8 @@ export default class ReactToast extends Component<ReactToastProps, ReactToastSta
 
   /* ----- public eventBus methods ----- */
   present: PresentCallback = (textOrProps?, opts?) => {
-    const props = typeof textOrProps === 'object' ? textOrProps : { children: textOrProps, ...opts };
+    const props =
+      typeof textOrProps === 'object' ? textOrProps : { children: textOrProps, ...opts };
     const runtimeProps = compact(props);
     this.setState({ runtimeProps }, () => {
       this.ve?.to(true);
@@ -126,7 +133,10 @@ export default class ReactToast extends Component<ReactToastProps, ReactToastSta
 
   render() {
     const { visible, runtimeProps } = this.state;
-    const { name, className, fixed, zIndex, duration, offset, ...rest } = { ...this.props, ...runtimeProps };
+    const { name, className, fixed, zIndex, duration, offset, ...rest } = {
+      ...this.props,
+      ...runtimeProps,
+    };
 
     return (
       <div
