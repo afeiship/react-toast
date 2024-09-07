@@ -27,7 +27,7 @@
     "react-dom": "^18.2.0",
     "tsup": "^8.2.4",
     "typescript": "^5.2.2",
-    "@jswork/harmony-events": "^1.2.5"
+    "@jswork/harmony-events": "^1.2.6"
   },
   "peerDependencies": {
     "classnames": "*",
@@ -40,7 +40,7 @@
     "registry": "https://registry.npmjs.org"
   },
   "dependencies": {
-    "@jswork/event-mitt": "^1.0.14",
+    "@jswork/event-mitt": "^2.0.7",
     "@jswork/visible-element": "^1.0.9"
   },
   "keywords": [
